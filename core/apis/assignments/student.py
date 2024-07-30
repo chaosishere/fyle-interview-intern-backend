@@ -23,8 +23,7 @@ def list_assignments(p):
 def upsert_assignment(p, incoming_payload):
     """Create or Edit an assignment"""
     assignment = AssignmentSchema().load(incoming_payload)
-    assignment.student_id = p.student_id
-
+    
     upserted_assignment = Assignment.upsert(assignment, p)
     db.session.commit()
     upserted_assignment_dump = AssignmentSchema().dump(upserted_assignment)

@@ -86,3 +86,23 @@ def test_assignment_resubmit_error(client, h_student_1):
     assert response.status_code == 400
     assert error_response['error'] == 'FyleError'
     assert error_response["message"] == 'only a draft assignment can be submitted'
+
+
+# Created a failure case test for the endpoint /student/assignments/submit where the assignment is being submitted by a student who is not the owner of the assignment. The test should assert that the response status code is 400 and the error message is 'FyleError' and the message is 'only the owner of the assignment can submit the assignment'.
+def test_assignment_submit_not_owner(client, h_student_1):
+    """
+    failure case: only the owner of the assignment can submit the assignment
+    """
+
+    response = client.post(
+        '/student/assignments/submit',
+        headers=h_student_1,
+        json={
+            'id': 3,
+            'teacher_id': 2
+        })
+    error_response = response.json
+    assert response.status_code == 400
+    assert error_response['error'] == 'FyleError'
+    assert error_response["message"] == 'This assignment belongs to some other student'
+
