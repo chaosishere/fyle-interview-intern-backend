@@ -4,3 +4,5 @@ venv
 *.pyd
 __pycache__
 .pytest_cache/
+.git
+.gitignore
