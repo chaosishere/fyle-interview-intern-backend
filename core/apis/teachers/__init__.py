@@ -1,1 +1,1 @@
-from .principal import principal_assignments_resources
+from .principal import principal_teachers_resources
