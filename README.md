@@ -56,3 +56,17 @@ pytest -vvv -s tests/
 # pytest --cov
 # open htmlcov/index.html
 ```
+## **Run and Build app on Docker**
+
+### Build and access the app at http://localhost:5000
+```
+docker-compose up
+```
+### Run the commands and access the bash within the container
+```
+docker exec -it fyle-interview-intern-backend-web-1 bash
+```
+### Ctrl + C to stop and remove the container
+```
+docker-compose down
+```
