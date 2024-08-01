@@ -106,3 +106,19 @@ def test_assignment_submit_not_owner(client, h_student_1):
     assert error_response['error'] == 'FyleError'
     assert error_response["message"] == 'This assignment belongs to some other student'
 
+# Create a test case for the endpoint /student/assignments/ whare the assignment is being edited by a student who is not the owner of the assignment. The test should assert that the response status code is 400 and the error message is 'FyleError' and the message is 'This assignment belongs to some other student'.
+def test_get_assignments_student_not_owner(client, h_student_1):
+    """
+    failure case: only the owner of the assignment can view the assignment
+    """
+
+    response = client.post(
+        '/student/assignments',
+        headers=h_student_1,
+        json={
+            'id': 3,
+            'content': 'ABCD POST'
+        })
+
+    assert response.status_code == 400
+
